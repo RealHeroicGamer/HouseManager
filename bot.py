@@ -35,8 +35,16 @@ async def on_message(message):
                     send(self.bot, '{} message{} cleared.'.format(len(msgs) - 1, "s" if len(msgs) - 1 != 1 else ""),
                          ctx.message.channel, True)
                 else:
-                    await command_error(ctx, 'Cannot delete more than 100 messages at a time.') 
-                    
-# wii-purge does not work. Will have to fix at a later time.
+                    await command_error(ctx, 'Cannot delete more than 100 messages at a time.')
+#(iyenal)I particularly dislike Python, but let's say that I do that for the server ;)
+        if message.content.startswith('wii-issue'):
+            await bot.send_message(message.channel, "Issue manager, please use add to submit a new one or check to check them.")
+
+@bot.command()
+async def hello(ctx):
+    embed = discord.Embed(title="Hello ! I am the The Wii Hacking House Bot", description="I am hoping to bring a lot of features for this server!", color=0x57ccee)    
+    embed.add_field(name="TWHH Members", value="42") #Hardcoded currently, but who cares
+    embed.add_field(name="TWHH Invite", value="https://discord.gg/pXdeUqb")
+    await ctx.send(embed=embed)
 
 bot.run(TOKEN)
